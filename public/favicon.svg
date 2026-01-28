@@ -1,0 +1,9 @@
+<svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main blue shield -->
+  <path d="M50 5 L85 20 L85 50 Q85 75 50 95 Q15 75 15 50 L15 20 Z" fill="#29B6F6"/>
+  <!-- Inner white shield -->
+  <path d="M50 25 L70 35 L70 52 Q70 68 50 80 Q30 68 30 52 L30 35 Z" fill="white"/>
+  <!-- Orange keyhole -->
+  <circle cx="50" cy="48" r="8" fill="#FF6B35"/>
+  <path d="M46 52 L46 68 Q46 70 50 70 Q54 70 54 68 L54 52" fill="#FF6B35"/>
+</svg>
