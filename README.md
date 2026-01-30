@@ -154,7 +154,11 @@ Le Module MDT peut être distribué sous forme d'application portable ou auto-ex
 Génère un fichier HTML unique contenant l'intégralité de l'application :
 
 ```bash
+# Linux/macOS (Node.js)
 npm run build:portable
+
+# Windows (PowerShell)
+npm run build:portable:ps
 ```
 
 **Sortie :** `dist-portable/mdt-dashboard-rgpd-portable.html`
@@ -166,9 +170,11 @@ npm run build:portable
 - Ouvrir directement dans un navigateur
 - Idéal pour partage par email ou clé USB
 
-### 2. Script Auto-Extractible (.sh)
+### 2. Script Auto-Extractible
 
-Crée un script bash auto-extractible qui s'extrait et se lance automatiquement :
+Crée un script auto-extractible qui s'extrait et se lance automatiquement.
+
+#### Linux/macOS (.sh)
 
 ```bash
 npm run build:self-extracting
@@ -176,13 +182,7 @@ npm run build:self-extracting
 
 **Sortie :** `dist-self-extracting/mdt-dashboard-vX.X.X-YYYYMMDD.sh`
 
-**Caractéristiques :**
-- Archive compressée intégrée
-- Scripts de lancement Linux/macOS et Windows
-- Documentation incluse
-- S'extrait automatiquement vers `~/mdt-dashboard/`
-
-**Options du script auto-extractible :**
+**Options :**
 ```bash
 # Exécution standard (extrait et lance)
 ./mdt-dashboard-v0.5.0-YYYYMMDD.sh
@@ -197,12 +197,36 @@ npm run build:self-extracting
 ./mdt-dashboard-v0.5.0-YYYYMMDD.sh --help
 ```
 
+#### Windows (.ps1)
+
+```powershell
+npm run build:self-extracting:ps
+```
+
+**Sortie :** `dist-self-extracting/mdt-dashboard-vX.X.X-YYYYMMDD.ps1`
+
+**Options :**
+```powershell
+# Exécution standard (extrait et lance)
+.\mdt-dashboard-v0.5.0-YYYYMMDD.ps1
+
+# Extraire sans lancer l'application
+.\mdt-dashboard-v0.5.0-YYYYMMDD.ps1 -ExtractOnly
+
+# Extraire vers un répertoire spécifique
+.\mdt-dashboard-v0.5.0-YYYYMMDD.ps1 -Target "C:\MonDossier"
+```
+
 ### 3. Build Complet
 
 Génère à la fois le fichier portable et le script auto-extractible :
 
 ```bash
+# Linux/macOS
 npm run build:all
+
+# Windows (PowerShell)
+npm run build:all:ps
 ```
 
 ### Contenu de l'Archive Auto-Extractible
@@ -222,11 +246,15 @@ SOUVERAINETE-NUMERIQUE/
 ├── dist-portable/           # Fichier HTML autonome
 │   └── mdt-dashboard-rgpd-portable.html
 ├── dist-self-extracting/    # Application auto-extractible
-│   ├── mdt-dashboard-vX.X.X-YYYYMMDD.sh
-│   └── mdt-dashboard-vX.X.X-YYYYMMDD.tar.gz
+│   ├── mdt-dashboard-vX.X.X-YYYYMMDD.sh      # Linux/macOS
+│   ├── mdt-dashboard-vX.X.X-YYYYMMDD.ps1     # Windows PowerShell
+│   ├── mdt-dashboard-vX.X.X-YYYYMMDD.tar.gz  # Archive Linux
+│   └── mdt-dashboard-vX.X.X-YYYYMMDD.zip     # Archive Windows
 └── scripts/
-    ├── build-single-file.js      # Script de build portable
-    └── create-self-extracting.sh # Script de création auto-extractible
+    ├── build-single-file.js       # Script Node.js (cross-platform)
+    ├── build-single-file.ps1      # Script PowerShell (Windows)
+    ├── create-self-extracting.sh  # Script Bash (Linux/macOS)
+    └── create-self-extracting.ps1 # Script PowerShell (Windows)
 ```
 
 ## Technologies
