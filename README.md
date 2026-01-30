@@ -145,6 +145,90 @@ npm run dev
 npm run build
 ```
 
+## Application Portable & Auto-Extractible
+
+Le Module MDT peut être distribué sous forme d'application portable ou auto-extractible, ne nécessitant aucune installation.
+
+### 1. Fichier HTML Portable (Single-File)
+
+Génère un fichier HTML unique contenant l'intégralité de l'application :
+
+```bash
+npm run build:portable
+```
+
+**Sortie :** `dist-portable/mdt-dashboard-rgpd-portable.html`
+
+**Caractéristiques :**
+- Fichier HTML autonome (~730 KB)
+- CSS et JavaScript inline
+- Fonctionne hors-ligne
+- Ouvrir directement dans un navigateur
+- Idéal pour partage par email ou clé USB
+
+### 2. Script Auto-Extractible (.sh)
+
+Crée un script bash auto-extractible qui s'extrait et se lance automatiquement :
+
+```bash
+npm run build:self-extracting
+```
+
+**Sortie :** `dist-self-extracting/mdt-dashboard-vX.X.X-YYYYMMDD.sh`
+
+**Caractéristiques :**
+- Archive compressée intégrée
+- Scripts de lancement Linux/macOS et Windows
+- Documentation incluse
+- S'extrait automatiquement vers `~/mdt-dashboard/`
+
+**Options du script auto-extractible :**
+```bash
+# Exécution standard (extrait et lance)
+./mdt-dashboard-v0.5.0-YYYYMMDD.sh
+
+# Extraire sans lancer l'application
+./mdt-dashboard-v0.5.0-YYYYMMDD.sh --extract-only
+
+# Extraire vers un répertoire spécifique
+./mdt-dashboard-v0.5.0-YYYYMMDD.sh --target /chemin/personnalise
+
+# Afficher l'aide
+./mdt-dashboard-v0.5.0-YYYYMMDD.sh --help
+```
+
+### 3. Build Complet
+
+Génère à la fois le fichier portable et le script auto-extractible :
+
+```bash
+npm run build:all
+```
+
+### Contenu de l'Archive Auto-Extractible
+
+| Fichier | Description |
+|---------|-------------|
+| `index.html` | Application MDT complète (single-file) |
+| `lancer-mdt.sh` | Script de lancement Linux/macOS |
+| `lancer-mdt.bat` | Script de lancement Windows |
+| `LISEZ-MOI.txt` | Documentation utilisateur |
+
+### Structure des Builds
+
+```
+SOUVERAINETE-NUMERIQUE/
+├── dist/                    # Build standard Vite
+├── dist-portable/           # Fichier HTML autonome
+│   └── mdt-dashboard-rgpd-portable.html
+├── dist-self-extracting/    # Application auto-extractible
+│   ├── mdt-dashboard-vX.X.X-YYYYMMDD.sh
+│   └── mdt-dashboard-vX.X.X-YYYYMMDD.tar.gz
+└── scripts/
+    ├── build-single-file.js      # Script de build portable
+    └── create-self-extracting.sh # Script de création auto-extractible
+```
+
 ## Technologies
 
 - **React 18** - Interface utilisateur
@@ -211,6 +295,8 @@ Interface de saisie des 30 questions avec :
 - 3 nouveaux KPI : Maturité RGPD, Risque transfrontalier, Contractualisation
 - Alertes critiques : Détection automatique des non-conformités majeures
 - Analyse RGPD dédiée : Onglet spécifique avec matrice de risques
+- **Application portable** : Fichier HTML unique auto-contenu (~730 KB)
+- **Script auto-extractible** : Distribution facilitée sans installation requise
 
 ## Licence
 
